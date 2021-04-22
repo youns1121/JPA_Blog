@@ -31,11 +31,13 @@ public class Board {
     @ColumnDefault("0") //DB의 넘버값
     private int count; // 조회수
 
-    @ManyToOne // Many = Board, User = One : 한명의 유저는 여러 게시글을 사용할 수 있다
+    @ManyToOne(fetch = FetchType.EAGER)//디폴트 값 EAGER // Many = Board, User = One : 한명의 유저는 여러 게시글을 사용할 수 있다
     @JoinColumn(name="userId") // 필드값은 'userId'
     private User user; // DB는 오브젝트를 저장할 수 없다. FK, 자바는 오브젝트 저장할 수 있다.
 
-    @OneToMany(mappedBy = "board") // mappedBy 연관관계의 주인이 아니다 (난 FK가 아니에요) DB에 컬럼을 만들지 마세요
+
+
+    @OneToMany(mappedBy = "board", fetch=FetchType.EAGER)//디폴트 LAZY // mappedBy 연관관계의 주인이 아니다 (난 FK가 아니에요) DB에 컬럼을 만들지 마세요
     private List<Reply> reply;
 
     @CreationTimestamp // 시간이 자동 입력
