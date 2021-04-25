@@ -1,32 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8"%>
-<%@ include file="layout/header.jsp" %>
+<%@ include file="../layout/header.jsp" %>
 
 <div class="container">
-  <div class="card m-2">
-    <div class="card-body">
-      <h4 class="card-title">제목</h4>
-      <p class="card-text">내용</p>
-      <a href="#" class="btn btn-primary">상세보기</a>
-    </div>
+<form action="/action_page.php">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input type="text" class="form-control" placeholder="Enter username" id="username">
   </div>
 
-  <div class="card m-2">
-    <div class="card-body">
-      <h4 class="card-title">제목</h4>
-      <p class="card-text">내용</p>
-      <a href="#" class="btn btn-primary">상세보기</a>
-    </div>
+  <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" placeholder="Enter password" id="password">
   </div>
 
-      <div class="card m-2">
-        <div class="card-body">
-          <h4 class="card-title">제목</h4>
-          <p class="card-text">내용</p>
-          <a href="#" class="btn btn-primary">상세보기</a>
-        </div>
-      </div>
+  <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" class="form-control" placeholder="Enter email" id="email">
+  </div>
 
-     </div>
+</form>
+  <button id="btn-save" class="btn btn-primary">회원가입완료</button>
+</div>
 
-<%@ include file="layout/footer.jsp" %>
+<script src="/blog/js/user.js"></script>
+<%@ include file="../layout/footer.jsp" %>
