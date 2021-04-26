@@ -1,7 +1,7 @@
 server:
   port: 8080
   servlet:
-    context-path: /blog #localhost:8080/blog
+
     encoding:
       charset: UTF-8
       enabled: true
