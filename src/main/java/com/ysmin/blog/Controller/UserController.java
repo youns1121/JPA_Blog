@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> 6a98001402c69fa11a917eead30b2635cf8cc5e2
 package com.ysmin.blog.Controller;
 
 import org.springframework.stereotype.Controller;
@@ -19,19 +15,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UserController {
 
     @GetMapping("/auth/joinForm")
-    public String joinForm(){
+    public String joinForm() {
 
         return "user/joinForm";
     }
 
     @GetMapping("/auth/loginForm")
-    public String loginForm(){
+    public String loginForm() {
 
         return "user/loginForm";
     }
+}
 
-<<<<<<< HEAD
-}
-=======
-}
->>>>>>> 6a98001402c69fa11a917eead30b2635cf8cc5e2
+
+
+
+

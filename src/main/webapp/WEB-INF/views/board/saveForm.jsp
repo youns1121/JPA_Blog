@@ -10,9 +10,10 @@
     </div>
 
     <div class="form-group">
-      <label for="content">Content:</label>
+      <label for="content">Content</label>
       <textarea class="form-control summernote" rows="5" id="content"></textarea>
     </div>
+
   </form>
   <button id ="btn-save" class="btn btn-primary">글쓰기완료</button>
 </div>
