@@ -1,26 +1,9 @@
+
 package com.ysmin.blog.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
-<<<<<<< HEAD
-@Controller  //View를 반환하기 위해 사용
-public class UserController {
-
-    @GetMapping("/user/joinForm")
-    public String joinForm(){
-
-        return "user/joinForm";
-
-    }
-
-    @GetMapping("/user/loginForm")
-    public String loginForm(){
-
-        return "user/loginForm";
-
-    }
-=======
 /*
     인증이 안된 사용자들이 출입할 수 있는 경로를 /auth/** 허용
     그냥 주소가 '/' 이면 index.jsp 허용
@@ -44,5 +27,4 @@ public class UserController {
         return "user/loginForm";
     }
 
->>>>>>> 6a98001 (2021-04-26_스프링 시큐리티 추가)
 }

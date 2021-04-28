@@ -29,8 +29,6 @@
 
      </div>
 
-<<<<<<< HEAD
-=======
+
 <script src="/js/user.js"></script>
->>>>>>> 6a98001 (2021-04-26_스프링 시큐리티 추가)
 <%@ include file="layout/footer.jsp" %>
