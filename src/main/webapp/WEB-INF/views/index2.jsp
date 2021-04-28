@@ -29,6 +29,9 @@
 
      </div>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a98001402c69fa11a917eead30b2635cf8cc5e2
 <script src="/js/user.js"></script>
 <%@ include file="layout/footer.jsp" %>

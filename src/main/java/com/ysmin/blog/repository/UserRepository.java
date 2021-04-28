@@ -13,7 +13,10 @@ DAO
  */
 public interface UserRepository extends JpaRepository<User, Integer> {
 
+<<<<<<< HEAD
     Optional<User> findByUsername(String username);
+=======
+>>>>>>> 6a98001402c69fa11a917eead30b2635cf8cc5e2
 
 }
 

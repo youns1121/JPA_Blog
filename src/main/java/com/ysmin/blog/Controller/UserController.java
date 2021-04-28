@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6a98001402c69fa11a917eead30b2635cf8cc5e2
 package com.ysmin.blog.Controller;
 
 import org.springframework.stereotype.Controller;
@@ -27,4 +30,8 @@ public class UserController {
         return "user/loginForm";
     }
 
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6a98001402c69fa11a917eead30b2635cf8cc5e2
