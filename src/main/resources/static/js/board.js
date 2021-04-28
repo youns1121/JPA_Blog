@@ -8,6 +8,10 @@ let index = {
         $("#btn-delete").on("click", ()=> { // jQuery사용 , function(){}, ()=>{} this를 바인딩딩하기 위해서!!
             this.deleteById();
         });
+
+        $("#btn-update").on("click", ()=> { // jQuery사용 , function(){}, ()=>{} this를 바인딩딩하기 위해서!!
+            this.update();
+        });
     },
 
     save: function(){
@@ -31,7 +35,7 @@ let index = {
           },
 
         deleteById: function(){
-            var id = $("#id").text(); // 아이디값을 찾아서
+            let id = $("#id").text(); // 아이디값을 찾아서
 
             $.ajax({
                 type: "DELETE",
@@ -46,5 +50,29 @@ let index = {
                 alert(JSON.stringify(error));
             });
         },
+
+        update: function(){
+            let id = $("#id").val();
+
+            let data = {
+                title: $("#title").val(),
+                content: $("#content").val()
+            };
+
+            $.ajax({
+                type: "PUT",
+                url: "/api/board/"+id,
+                data:JSON.stringify(data), // http body 데이터
+                contentType: "application/json; charset=utf-8",
+                dataType:"json"
+            }).done(function(resp){
+                alert("글 수정이 완료되었습니다.");
+                location.href = "/";
+            }).fail(function(error){
+                alert(JSON.stringify(error));
+            });
+        },
+
+
 }
 index.init();
