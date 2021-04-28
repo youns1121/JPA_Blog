@@ -42,7 +42,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
             http
                     .csrf().disable() // csrf 토큰 비활성화(테스트시 걸어두는 게 좋음)
                     .authorizeRequests()
-                    .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**")
+                    .antMatchers("/", "/auth/**", "/js/**", "/css/**", "/image/**", "/dummy/**")
                     .permitAll()
                     .anyRequest()
                     .authenticated() // 인증이 되지 않은 요청은 -> "/auth/loginForm" 으로 감

@@ -24,7 +24,7 @@ public class DummyControllerTest {
     private UserRepository userRepository;
 
     //http://localhost:8080/blog/dummy/user
-    @GetMapping("dummy/users")
+    @GetMapping("/dummy/users")
     public List<User> list(){
         return userRepository.findAll();
     }
@@ -34,7 +34,7 @@ public class DummyControllerTest {
     //save함수는 id를 전달하면 해당 id에 대한 데이터가 없으면 insert를 합니다
     //email, password
 
-    @DeleteMapping("/dummy/user/{id}")
+    @DeleteMapping("dummy/user/{id}")
     public String delete(@PathVariable int id){
         try{
             userRepository.deleteById(id);
@@ -71,11 +71,11 @@ public class DummyControllerTest {
 
     //한페이지당 2건에 데이터를 리턴 받아 볼 예정
     @GetMapping("/dummy/user") //페이징 하기
-    public List<User> pageList(@PageableDefault(size=2, sort="id", direction = Sort.Direction.DESC) Pageable pageable){
+    public Page<User> pageList(@PageableDefault(size=2, sort="id", direction = Sort.Direction.DESC) Pageable pageable){
         Page<User> pagingUser = userRepository.findAll(pageable);
 
         List<User> users = pagingUser.getContent();
-        return users;
+        return pagingUser;
     }
 
     // {id} 주소로 파라미터터르 전달 받을수 있음
