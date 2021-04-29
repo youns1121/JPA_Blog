@@ -3,7 +3,11 @@ package com.ysmin.blog.service;
 import com.ysmin.blog.model.RoleType;
 import com.ysmin.blog.model.User;
 import com.ysmin.blog.repository.UserRepository;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +23,9 @@ import org.springframework.transaction.annotation.Transactional;
 
         @Autowired
         private BCryptPasswordEncoder encoder;
+
+        @Autowired
+        private AuthenticationManager authenticationManager;
 
         @Transactional
         public void 회원가입(User user){
@@ -44,7 +51,9 @@ import org.springframework.transaction.annotation.Transactional;
             persistance.setPassword(encPassword);
             persistance.setEmail(user.getEmail());
             //회원수정 함수 종료시 = 서비스 종료 = 트랜잭션 종료 = commit이 자동으로 됩니다.
-            //영속화된 persistanmce 객체의 변화가 감지되면 더티체킹이 되어 update문을 날려줌
+            //영속화된 persistance 객체의 변화가 감지되면 더티체킹이 되어 update문을 날려줌
+
+
         }
 
 
