@@ -15,6 +15,6 @@ public class GlobalExceptionHandler { // 오류가 난다면 이곳에서 리턴
 
     @ExceptionHandler(value = Exception.class) //잘못된 인자 전달 시 발생
     public ResponseDto<String> handleArgumentException(Exception e){
-        return new ResponseDto<String>(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
+        return new ResponseDto<String>(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage()); //500 error
     }
 }

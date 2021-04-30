@@ -1,5 +1,6 @@
 package com.ysmin.blog.model;
 
+import com.ysmin.blog.Controller.ReplySaveRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -32,5 +33,6 @@ public class Reply { // 답변 테이블
 
     @CreationTimestamp
     private Timestamp createDate;
+
 
 }

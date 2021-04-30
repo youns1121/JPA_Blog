@@ -1,11 +1,13 @@
 package com.ysmin.blog.service;
 
+import com.ysmin.blog.Controller.ReplySaveRequestDto;
 import com.ysmin.blog.model.Board;
 import com.ysmin.blog.model.Reply;
 import com.ysmin.blog.model.User;
 import com.ysmin.blog.repository.BoardRepository;
 
 import com.ysmin.blog.repository.ReplyRepository;
+import com.ysmin.blog.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +24,17 @@ public class BoardService {
 
     @Autowired
     private ReplyRepository replyRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+//     @Autowired
+//     private UserRepository userRepository;
+//              위아래 같은 결과
+///    public BoardService(BoardRepository bRepo, ReplyRepository rRepo){
+//        this.boardRepository = bRepo;
+//        this.replyRepository = rRepo;
+//    }
 
     @Transactional
     public void 글쓰기(Board board, User user){ // title, content
@@ -66,16 +79,28 @@ public class BoardService {
     }
 
     @Transactional
-    public void 댓글쓰기(User user, int boardId, Reply requestReply) {
+    public void 댓글쓰기(ReplySaveRequestDto replySaveRequestDto) {
 
-        Board board = boardRepository.findById(boardId)
+        User user = userRepository.findById(replySaveRequestDto.getUserId())
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("댓글 쓰기 실패: 유저 id를 찾을 수 없습니다.");
+                }); // 영속화 완료
+
+        Board board = boardRepository.findById(replySaveRequestDto.getBoardId())
                 .orElseThrow(()->{
                     return new IllegalArgumentException("댓글 쓰기 실패: 게시글 id를 찾을 수 없습니다.");
                 }); // 영속화 완료
 
-        requestReply.setUser(user);
-        requestReply.setBoard(board);
+        Reply reply = Reply.builder()
+                .user(user)
+                .board(board)
+                .content(replySaveRequestDto.getContent())
+                .build();
 
-        replyRepository.save(requestReply);
+
+//        requestReply.setUser(user);
+//        requestReply.setBoard(board);
+
+        replyRepository.save(reply);
     }
 }

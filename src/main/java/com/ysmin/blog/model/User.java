@@ -23,11 +23,12 @@ import java.sql.Timestamp;
 @Entity
 //@DynamicInsert //insert시에 null인 필드를 제외시킨다
 public class User {
+
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 프로젝트에서 연결된 DB의 넘버링 전략을 따라간다
     private int id; // 시퀀스, auto_increment
 
-    @Column(nullable = false, length = 30) // not null, 길이는 30byte
+    @Column(nullable = false, length = 30, unique = true) // not null, 길이는 30byte , unique = true : 유일해야 함
     private String username; // 아이디
 
     @Column(nullable = false, length = 100) // 123456 => Hash(비밀번호 암호화)

@@ -37,7 +37,7 @@ public class Board {
 
 
 
-    @OneToMany(mappedBy = "board", fetch=FetchType.EAGER)//디폴트 LAZY // mappedBy 연관관계의 주인이 아니다 (난 FK가 아니에요) DB에 컬럼을 만들지 마세요
+    @OneToMany(mappedBy = "board", fetch=FetchType.EAGER, cascade = CascadeType.REMOVE)//디폴트 LAZY // mappedBy 연관관계의 주인이 아니다 (난 FK가 아니에요) DB에 컬럼을 만들지 마세요
     @JsonIgnoreProperties({"board"}) // 무한참조 막기
     @OrderBy("id desc") // 댓글 내림차순 정렬
     private List<Reply> replys;
