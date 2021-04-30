@@ -1,9 +1,11 @@
 package com.ysmin.blog.service;
 
 import com.ysmin.blog.model.Board;
+import com.ysmin.blog.model.Reply;
 import com.ysmin.blog.model.User;
 import com.ysmin.blog.repository.BoardRepository;
 
+import com.ysmin.blog.repository.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,6 +19,9 @@ public class BoardService {
 
     @Autowired
     private BoardRepository boardRepository;
+
+    @Autowired
+    private ReplyRepository replyRepository;
 
     @Transactional
     public void 글쓰기(Board board, User user){ // title, content
@@ -58,5 +63,19 @@ public class BoardService {
         board.setContent(requestBoard.getContent());
         //해당 함수로 종료시(Service가 종료될 때) 트랜잭션이 종료됩니다. 이때 더티체킹 - 자동 업데이트가 됨. db flush
 
+    }
+
+    @Transactional
+    public void 댓글쓰기(User user, int boardId, Reply requestReply) {
+
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(()->{
+                    return new IllegalArgumentException("댓글 쓰기 실패: 게시글 id를 찾을 수 없습니다.");
+                }); // 영속화 완료
+
+        requestReply.setUser(user);
+        requestReply.setBoard(board);
+
+        replyRepository.save(requestReply);
     }
 }

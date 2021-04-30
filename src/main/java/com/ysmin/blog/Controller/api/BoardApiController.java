@@ -3,6 +3,7 @@ package com.ysmin.blog.Controller.api;
 import com.ysmin.blog.config.auth.PrincipalDetail;
 import com.ysmin.blog.dto.ResponseDto;
 import com.ysmin.blog.model.Board;
+import com.ysmin.blog.model.Reply;
 import com.ysmin.blog.model.RoleType;
 import com.ysmin.blog.model.User;
 import com.ysmin.blog.service.BoardService;
@@ -39,6 +40,13 @@ public class BoardApiController {
         System.out.println("BoardApiController : update : board = " + board.getContent());
 
         boardService.글수정하기(id, board);
+        return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
+    }
+
+    @PostMapping("/api/board/{boardId}/reply")
+    public ResponseDto<Integer> replySave(@PathVariable int boardId, @RequestBody Reply reply, @AuthenticationPrincipal PrincipalDetail principal) {
+
+        boardService.댓글쓰기(principal.getUser(), boardId, reply);
         return new ResponseDto<Integer>(HttpStatus.OK.value(), 1);
     }
 
